@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     public float speed = 0;
-    // Start is called before the first frame update
+    public TextMeshProUGUI countText;  
+  
     private Rigidbody rb;
+    private int count;
     private float movementX;
     private float movementY;
-
+    
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        count = 0;
+
+        setCountText();
     }
 
     void OnMove(InputValue movementValue)
@@ -23,9 +29,27 @@ public class NewBehaviourScript : MonoBehaviour
         movementX = movementVector.x;
         movementY = movementVector.y;
     }
+
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+    }
+
     void FixedUpdate()
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
         rb.AddForce(movement * speed);
     }
+    // this is the fn for the pickup to get detected and removes it
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+            count = count + 1;
+
+            SetCountText();
+        }
+    }
+
 }
