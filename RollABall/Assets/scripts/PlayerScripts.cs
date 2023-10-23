@@ -7,8 +7,8 @@ using TMPro;
 public class NewBehaviourScript : MonoBehaviour
 {
     public float speed = 0;
-    public TextMeshProUGUI countText;  
-  
+    public TextMeshProUGUI countText;
+    public GameObject winTextObject;
     private Rigidbody rb;
     private int count;
     private float movementX;
@@ -21,6 +21,7 @@ public class NewBehaviourScript : MonoBehaviour
         count = 0;
 
         SetCountText();
+        winTextObject.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -33,6 +34,10 @@ public class NewBehaviourScript : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+        if(count >= 5)
+        {
+            winTextObject.SetActive(true);
+        }
     }
 
     void FixedUpdate()
@@ -47,7 +52,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count = count + 1;
-
             SetCountText();
         }
     }
