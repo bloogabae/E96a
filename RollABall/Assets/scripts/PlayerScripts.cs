@@ -20,7 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         count = 0;
 
-        setCountText();
+        SetCountText();
     }
 
     void OnMove(InputValue movementValue)
