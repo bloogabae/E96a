@@ -1667,7 +1667,7 @@ PrefabInstance:
     - target: {fileID: 1484296190148926221, guid: a323a84a0fde1914883c7301c81655b4,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: PickUp
       objectReference: {fileID: 0}
     - target: {fileID: 9115190012152468988, guid: a323a84a0fde1914883c7301c81655b4,
         type: 3}
